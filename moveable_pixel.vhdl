@@ -21,34 +21,43 @@ architecture behavior of moveable_pixel is
 
 begin
 
-
+	--draw object on screen
 	vgaRed <= "1111" when vpos>=v_pix and vpos <= v_pix+20 and hpos>=h_pix and hpos<=h_pix+20 else
 				"0000";
 
 
 
 	moveUp:process(btnU,btnD,btnL,btnR)begin
+		
+		--Move up
 		if(btnU='1')then
 			if(vpos>1)then
 				vpos<=vpos-1;
 			end if;
 		end if;	
+		
+		--Move down	
 		if(btnD='1')then
-            if(vpos<480)then
-                 vpos<=vpos+1;
-             end if;
-        end if;
-        if(btnL='1')then
-            if(hpos>1)then
-                  hpos<=hpos-1;
-            end if;
-        end if;
-        if(btnR='1')then
-             if(hpos<640)then
-                  hpos<=hpos+1;
-             end if;
-        end if;
-   end process;
+            		if(vpos<480)then
+                 		vpos<=vpos+1;
+             		end if;
+        	end if;
+        	
+		--Move left	
+		if(btnL='1')then
+            		if(hpos>1)then
+                  		hpos<=hpos-1;
+            		end if;
+        	end if;
+        	
+		--Move right	
+		if(btnR='1')then
+             		if(hpos<640)then
+                  		hpos<=hpos+1;
+             		end if;
+        	end if;
+			
+	end process;
 
 
 end behavior;
